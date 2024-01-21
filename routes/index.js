@@ -129,7 +129,11 @@ router.post('/update', upload.single('image'), async function (req, res) {
     { name: req.body.name, username: req.body.username, bio: req.body.bio },
     { new: true }
   );
-  if (req.file) user.image = req.file.filename;
+  console.log(req.file);
+  if(req.file!==undefined){
+    user.image = req.file.filename;
+  }
+
   await user.save();
   res.redirect('/profile');
 });
